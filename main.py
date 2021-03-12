@@ -1,9 +1,9 @@
 import pygame
 from models.main import Board, Unit, UnitTypes
 
-b = Board(10, 10)
+b = Board(6, 6)
 b.drawer.draw()
-b.addUnit((2, 2), Unit(UnitTypes.DEFENDER, (2, 2)))
+b.addUnit((0, 2), Unit(UnitTypes.DEFENDER))
 b.drawer.draw()
 
 

@@ -8,9 +8,8 @@ class Player:
 
 
 class Unit:
-    def __init__(self, unit_type, position=(0, 0)):
+    def __init__(self, unit_type):
         self.type = unit_type
-        self.position = position
         self.drawer = models.drawers.UnitPrinter(self)
 
 
@@ -79,7 +78,11 @@ class Board:
     def __init__(self, width, height):
         self.__width = width
         self.__height = height
-        self.__fields = [[FieldFactory.getRandomField()] * width for i in range(height)]
+        self.__fields = []
+        for i in range(height):
+            self.__fields.append([])
+            for j in range(width):
+                self.__fields[i].append(FieldFactory.getRandomField())
 
         self.drawer = models.drawers.BoardPrinter(self)
 
@@ -87,10 +90,11 @@ class Board:
         return self.__width, self.__height
 
     def getFields(self):
-        return self.__fields[:]
+        return self.__fields[:][:]
 
-    def addUnit(self, position, unit):
-        self.__fields[position[0]][position[1]].addUnit(unit)
+    def addUnit(self, position=(0, 0), unit=None):
+        x, y = position[0], position[1]
+        self.__fields[y][x].addUnit(unit)
 
 
 class FieldFactory:

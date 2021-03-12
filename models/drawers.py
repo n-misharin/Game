@@ -21,7 +21,7 @@ class FieldPrinter(Drawer):
             unit.drawer.draw()
             print(',', end='')
         no_print_unit_count = self.field.MAX_UNITS_ON_FIELD - len(self.field.getUnits())
-        print((2 * no_print_unit_count) * ' ', '|', end='')
+        print((2 * no_print_unit_count) * ' ', end='')
 
 
 class BoardPrinter(Drawer):
@@ -31,7 +31,7 @@ class BoardPrinter(Drawer):
     def draw(self):
         fields = self.board.getFields()
         for _line in fields:
-            print(('-' * 7) * len(fields))
+            print(('-' * 9) * len(fields))
             for _field in _line:
                 _field.drawer.draw()
             print()
